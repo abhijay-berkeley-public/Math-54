@@ -1,0 +1,241 @@
+\documentclass[11pt]{report}
+
+    \usepackage[margin=1in]{geometry}
+   \usepackage{amsmath,amsthm,amssymb,amsfonts}
+
+   \newcommand{\N}{\mathbb{N}}
+   \newcommand{\Z}{\mathbb{Z}}
+   \newcommand{\R}{\mathbb{R}}
+   \usepackage[parfill]{parskip}
+	\newenvironment{solution}{\paragraph{\small Solution:}}{\hfill}
+	\newenvironment{theorem}{\paragraph{Theorem:}}{\hfill} 
+	\newenvironment{definition}{\paragraph{Definition:}}{\hfill} 
+
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+   \item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+
+\begin{document}
+   \title{Math 54: Week 2 Discussion}
+   \author{Abhijay Bhatnagar}
+   \maketitle
+   \tableofcontents
+
+
+\setcounter{secnumdepth}{0} %% no numbering
+\section{Inconsistent Matrix}
+
+True or false? A system with fewer equations than unknowns is always consistent? Answer: False
+
+Ex: 
+\begin{align}
+x + y + z &= 2 \\
+x + y + z &= 3
+\end{align}
+
+\begin{theorem}
+	A system of linear equations has no solutions, exactly 1 solution, or infinity solutions.
+\end{theorem}
+\begin{proof}
+If any matrix reduces to:
+
+\begin{center}
+\[\begin{matrix}
+  x_1 & * & * & ... & a \\
+  0 & x_2 & & ... & ...\\
+  0 & 0 & 0 & ... & c
+\end{matrix}
+\]
+
+Then the last row is the equation, 0 = c, which is nonzero. Contradiction, no solution.
+
+\end{center}
+
+If any matrix reduces to:
+
+\begin{center}
+\[\begin{matrix}
+  x_1 & * &  & ... & a \\
+  0 & x_2 & & ... & b\\
+  0 & 0 & x_3 & ... & c \\
+  ...
+\end{matrix}\]
+
+
+Then the rows reduce to  $\{x_1, x_2, x_3\} = \{a,b,c\}$ which is nonzero. There is no contradiction.
+
+\end{center}
+
+If any matrix reduces to:
+
+\begin{center}
+\[\begin{matrix}
+  x_1 &  &  & & a \\
+  0 & 0 & x_3 &  & b\\
+  0 & 0 & 0 & x_4 & c \\
+  ...
+\end{matrix}\]
+
+\end{center}
+Then the rows reduce to  $\{x_1, x_2, x_3, x_4\} = \{a, free, b,c\}$. There is no contradiction, but infinitely many solutions for $x_2$.
+
+\end{proof}
+
+\begin{definition}
+	The non-pivot columns are the free variables, the pivot columns are the basic variables
+\end{definition}
+
+
+\begin{definition}
+	A matrix is $n$x$m$ if it has $n$ rows and $m$ columns (so height by width).
+	E.g. 
+	\begin{center}
+	\[\begin{matrix}{}
+	  1 & 4 \\
+	  3 & 5 \\
+	  5 & 7
+	\end{matrix}\]
+
+	\end{center}
+
+	Is 3x2.
+\end{definition}
+
+\section{Homework Review}
+
+
+\begin{problem}{20}
+	Determine all h s.t. augmented matrix is consistent:
+	
+	\[\begin{matrix}{}
+  	1& h& -3 \\
+  	-2& 4& 6 
+	\end{matrix}\]
+
+	
+	
+	\begin{solution}\
+	
+	We know it is consistent if and only if there is no pivot in last column.
+
+	
+	\[\begin{matrix}{}
+  	1& h& -3 \\
+  	0& 4 + 2h & 0 
+	\end{matrix}\]
+
+	
+	There is never a pivot in last column.
+
+		
+	\end{solution}
+	
+\end{problem}
+
+\begin{problem}{28}
+
+	Suppose a,b,c,d sonstants where a $\neq$ 0, and below system is consistent for all f, g. What em say about a,b,c,d?
+	
+	\begin{align}
+		ax_1 + bx_2&=f \\
+		cx_1+dx_2&=g
+	\end{align}
+	
+	\begin{solution}\
+	
+	\[\begin{matrix}{}
+	  a & b &f \\
+	  c& d&g 
+	\end{matrix}\]
+
+
+	Substract c/a, Row 1 from Row 2, yielding:
+	
+	\[\begin{matrix}{}
+	  a & b &f \\
+	  0 & d - bc/a &g -fc/a
+	\end{matrix}\]
+
+	
+	We want this to be consistent for all $f,g$ , but as $f,g$ can be anything , so can $g-fc/a$. So for some $f,g$, $g-fc/a \neq 0$ (let $f=0$, $g = 1$). So to be consistent for all $f,g$, we need:
+	
+	\[\begin{matrix}{}
+	  [a] & b& f \\
+	  0 & [d-bc/a] & g- f/ca
+	\end{matrix}\]
+ 
+	
+	pivots.
+
+	\therefore $d-bc/a \neq 0 \implies d \neq cb/a$
+		
+	\end{solution}
+
+\end{problem}
+
+
+\section{New Material}
+
+\begin{definition}
+	A vector in $\R^n$ is a $n$x1 matrix. For instance: 
+	
+	\[\begin{matrix}{}
+	  2&\\
+	  5& \\
+	  7&
+	\end{matrix}\]
+ \in \R^3
+ 
+\end{definition}
+
+\begin{definition} Vector Definition
+
+\[\begin{matrix}{}
+  x_1& \\
+  ...& \\
+  x_n&
+\end{matrix}\]
+ + \[\begin{matrix}{}
+  y_1& \\
+  ...& \\
+  y_n&
+\end{matrix}\]
+ = \[\begin{matrix}{}
+  x_1 + y_1& \\
+  ...& \\
+  x_n + y_n &
+\end{matrix}\]
+
+
+	
+\end{definition}
+
+\begin{definition} Scaling. Given scalar $c \in \R$, and vector $\{x_1, ..., x_n\} \in \R^n$
+
+c \[\begin{matrix}{}
+  x_1 & \\
+  ...&\\
+  x_n&
+\end{matrix}\]
+ =\[\begin{matrix}{}
+  cx_1 & \\
+  ...&\\
+  cx_n&
+\end{matrix}\]	
+\end{definition}
+
+
+\begin{theorem}
+	Vectors $u,v,w \in R^n$ and scalars $c,d \in \R$ satisfy the following properties (which we will later call axioms defining a vector space:
+	\begin{enumerate}
+		\item Associative: $u + (v+w) = (u+v) + w $
+		\item Communtative: $u + v = v+u $
+		\item Distributive: c(u+v) = cu + cv \\  (c+d)u = cu + du
+		\item Scalar Associative: c(du) = (cd)u
+		\item Zero vector, there is a zero vector 0^hat, s.t. o^hat + v = v $\forall$ v.
+		\item Multiplication identity: 1*v = v
+	\end{enumerate}
+\end{theorem}
+
+\end{document}

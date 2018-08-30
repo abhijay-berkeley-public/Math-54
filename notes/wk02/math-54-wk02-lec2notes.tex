@@ -1,0 +1,236 @@
+\documentclass[11pt, notitlepage]{report}
+
+	\usepackage[margin=1in]{geometry}
+	\usepackage{amsmath,amsthm,amssymb,amsfonts}
+	\usepackage{enumitem}
+	
+	\newcommand{\N}{\mathbb{N}}
+	\newcommand{\Z}{\mathbb{Z}}
+	\newcommand{\R}{\mathbb{R}}
+	\newcommand{\A}{\alpha}
+	\newcommand{\un}[1]{\text{\underline{#1}}}
+	\usepackage[parfill]{parskip}
+	\newenvironment{solution}{\paragraph{\small Solution:}}{\hfill}
+	\newenvironment{theorem}{\paragraph{Theorem:}}{\hfill}
+	\newenvironment{definition}{\paragraph{Definition:}}{\hfill}
+	\newenvironment{problem}[2][Problem]{\begin{trivlist}
+	\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+	
+	\usepackage{pgfplots}
+	\usetikzlibrary{arrows}
+	\usetikzlibrary{decorations.markings}
+	\usetikzlibrary{datavisualization}
+	\usetikzlibrary{datavisualization.formats.functions}
+	%\usepackage{pstricks-add}
+
+	\pgfplotsset{every axis/.append style={
+	                   axis x line=middle,    % put the x axis in the middle
+	                   axis y line=middle,    % put the y axis in the middle
+	                   axis line style={<->,color=gray}, % arrows on the axis
+	                   xlabel={$x$},          % default put x on x-axis
+	                   ylabel={$y$},          % default put y on y-axis
+	           }}
+	\pgfplotsset{compat=1.15}
+	
+	\newcommand{\pgraph}[4]{
+		\begin{center}
+		
+		\begin{tikzpicture}
+		\begin{axis}[
+		   trig format plots=rad,
+		   axis equal,
+		   grid=both
+		]
+		\addplot [domain=#3:#4, variable=\t, samples=50, black, decoration={
+		   markings,
+		   mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+		   }, postaction=decorate]
+		({#1}, {#2});
+		
+		\end{axis}
+		\end{tikzpicture}
+		
+		\end{center}
+	}
+
+
+   \newcommand{\cgraph}[3]{
+	   \begin{center}
+	
+	   \begin{tikzpicture}
+	   \begin{axis}[
+	       trig format plots=rad,
+	       axis equal,
+	       grid=both
+	   ]
+	   \addplot [domain=#2:#3, variable=\x, samples=50, black, decoration={
+	       markings,
+	       mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+	       }, postaction=decorate]
+	   {#1};
+	
+	   \end{axis}
+	   \end{tikzpicture}
+	
+	   \end{center}
+	}
+
+
+	
+	\makeatletter
+	\newcommand*{\toccontents}{\@starttoc{toc}}
+	\makeatother
+
+
+\begin{document}
+   \title{Physics 5a: Homework 1}
+   \author{Abhijay Bhatnagar}
+   \maketitle
+   \toccontents
+
+
+
+\setcounter{secnumdepth}{0} %% no numbering
+\section{Continued from last week}
+
+%\subsection{Reduced Row Echelon Form}
+
+\section{New Material}
+\subsection{Linear transformations}
+
+For \[y = \left(\begin{matrix}{}
+  1 \\
+  2 \\
+  3
+\end{matrix}\right),
+v_1 = \left(\begin{matrix}{}
+  2 \\
+  1 \\
+  0
+\end{matrix}\right),
+v_2 = \left(\begin{matrix}{}
+  -2 \\
+  2 \\
+  6
+\end{matrix}\right)
+\]
+
+
+Is $y$ a linear combination of  $v_1$ and $v_2$? We can use RREF to find whether there are scalars $c_1, c_2$ s.t. c$v_1$ + c$v_2$ = $y$.
+
+
+\begin{definition}
+	Given $v_1,...v_n \in \R^m$, the span of $v_1,...,v_n$ is denoted $span\{v_1,...,v_n\}  \in \R^m$, which is the set of all linear combinations of $v_1,...,v_n$.
+\end{definition}
+
+\textbf{e.g.}: $span\{\un{0}\} = \{\un{0}\}$ \\
+\textbf{e.g. 2}: $span\{\left(\begin{matrix}{}
+						  1 \\
+						  1\end{matrix}\right)\} = cv: c \in \R^n$ \\
+\textbf{e.g. 3}: 
+
+  	  	$v_1 = \left(\begin{matrix}{}
+				  1 \\
+				  1\end{matrix}\right), v_2 = \left(\begin{matrix}{}
+				  1 \\
+				  0\end{matrix}\right)$
+
+
+  	$span\{v_1, v_2\} = \{c_1v_1 + c_2v_2 : c_1,c_2 \in \R\} =\R^2$
+
+\begin{proof} \
+
+	Goal: $span\{v_1, v_2\}=\R^2 \iff$ \\ 
+	For every b in R2, b is a linear comb of $v_1, v_2 \iff$ \\
+	for ever b in R2, RREF (1,1,b1),(0,1,b2) is consistent.
+	
+	b=(b1),(b2)
+\end{proof}
+
+\textbf{e.g. 4}
+
+  	  	$v_1 = \left(\begin{matrix}{}
+				  1 \\
+				  1 \\
+				  0 
+				  \end{matrix}\right), 
+				  v_2 = \left(\begin{matrix}{}
+				  0 \\
+				  1 \\
+				  1
+				  \end{matrix}\right)$ \\
+				  
+  	$span\{v_1, v_2\} = \{c_1v_1 + c_2v_2 : c_1,c_2 \in \R\} =\R^2$\\
+  	Intuitively, this is all points reachable by moving along v1, v2 (2d plane containing the vectors) \\
+  	
+  	Question: Why is the span $span\{v_1, v_2\} \notin R^3$?
+  	
+  	A1.) Cross product not in span
+  	
+  	A2.) No Vector perpendicular to plane of span is in span
+  	
+  	A3.) etc...
+  	
+  	Linear Algebra Answer: $b\in span\{v_1, v_2\} \iff$ \[
+\begin{matrix}{}
+  1&0 &b_1 \\
+  1&0 &b_2 \\
+  0&0 &b_3
+\end{matrix}
+\] is consistent.
+
+	Using RREF, there are 3 cases:
+	
+	\begin{enumerate}
+		\item no pivots
+		\item 1 pivot, top right
+		\item 2 pivots
+	\end{enumerate}
+	
+	Since b3 is an undefined variable, we can define it as nonzero in all three cases so that the RREF is inconsistent, which means no matter what $b_1, b_2$ are, we can find a $b_3$ s.t. $\un{b}$ is a vector that is not in the span. 
+
+\begin{theorem}{Equivalence Theorem}
+
+	$v_1,..., v_n$ spans $\R^m \iff x_1 v_1+...+x_n v_n = b$ has solution for every $b \in R^m$.
+	
+	$\iff$
+	
+	\[
+	\begin{matrix}{}
+	  1&... &1 &  \\
+	  v_1&... &v_n & b \\
+	  1&... &1 & 
+	\end{matrix}
+	\]is consistent for every b in Rm
+	
+	$\iff$
+	
+	\newpage
+	\{A, B\} has a pivot in every row of 
+	A =\[
+	\begin{matrix}{}
+	  1&... &1 \\
+	  v_1&... &v_n \\
+	  1&... &1
+	\end{matrix}
+	\], aka need to block last augmented column with a pivot in every row
+	
+	
+	
+\end{theorem}
+
+\textbf{Corrolary} If v1 to vn in rmr and p<m then span v to vp not in Rm
+
+A = 1 and v and 1 coeffeciient ma
+
+
+
+\section{Matrix Notation}
+
+Matrix vector product ax = linear combination of columns of A with coefficients of X1...Xn
+  	
+  	
+  	
+	
+
+\end{document}
