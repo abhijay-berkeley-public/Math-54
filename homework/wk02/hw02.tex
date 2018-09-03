@@ -1,0 +1,269 @@
+\documentclass[11pt, notitlepage]{report}
+
+	\usepackage[margin=1in]{geometry}
+	\usepackage{amsmath,amsthm,amssymb,amsfonts}
+	\usepackage{enumitem}
+	\usepackage{systeme}
+	\usepackage{pgfplots}
+
+	\newcommand{\N}{\mathbb{N}}
+	\newcommand{\Z}{\mathbb{Z}}
+	\newcommand{\R}{\mathbb{R}}
+	\newcommand{\A}{\alpha}
+	\usepackage[parfill]{parskip}
+	\usepackage{mathtools}
+	\newenvironment{problem}{\paragraph{\small Problem:}}{\hfill}
+	\newenvironment{solution}{\paragraph{Solution:}}{\hfill}
+	\newenvironment{theorem}{\paragraph{Theorem:}}{\hfill}
+	\newenvironment{definition}{\paragraph{Definition:}}{\hfill}
+	\usetikzlibrary{arrows}
+	\usetikzlibrary{decorations.markings}
+	\usetikzlibrary{datavisualization}
+	\usetikzlibrary{datavisualization.formats.functions}
+	%\usepackage{pstricks-add}
+
+	\pgfplotsset{every axis/.append style={
+	                   axis x line=middle,    % put the x axis in the middle
+	                   axis y line=middle,    % put the y axis in the middle
+	                   axis line style={<->,color=gray}, % arrows on the axis
+	                   xlabel={$x$},          % default put x on x-axis
+	                   ylabel={$y$},          % default put y on y-axis
+	           }}
+	\pgfplotsset{compat=1.15}
+	
+	\newcommand{\pgraph}[4]{
+		\begin{center}
+		
+		\begin{tikzpicture}
+		\begin{axis}[
+		   trig format plots=rad,
+		   axis equal,
+		   grid=both
+		]
+		\addplot [domain=#3:#4, variable=\t, samples=50, black, decoration={
+		   markings,
+		   mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+		   }, postaction=decorate]
+		({#1}, {#2});
+		
+		\end{axis}
+		\end{tikzpicture}
+		
+		\end{center}
+	}
+
+
+   \newcommand{\cgraph}[3]{
+	   \begin{center}
+	
+	   \begin{tikzpicture}
+	   \begin{axis}[
+	       trig format plots=rad,
+	       axis equal,
+	       grid=both
+	   ]
+	   \addplot [domain=#2:#3, variable=\x, samples=50, black, decoration={
+	       markings,
+	       mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+	       }, postaction=decorate]
+	   {#1};
+	
+	   \end{axis}
+	   \end{tikzpicture}
+	
+	   \end{center}
+	}
+
+
+	
+	\makeatletter
+	\newcommand*{\toccontents}{\@starttoc{toc}}
+	\makeatother
+
+
+\begin{document}
+   \title{Physics 5a: Homework 1}
+   \author{Abhijay Bhatnagar}
+   \maketitle
+
+   \toccontents
+
+
+
+\setcounter{secnumdepth}{0} %% no numbering
+\section{Assignment}
+
+1.2: 1, 5, 7, 11, 15, 23, 26, 30.
+
+\newpage
+\section{Problem 1.2.1}
+
+Determine which matrices are in RREF and which are only in REF.
+
+\begin{solution} \
+
+RREF: a, b
+
+REF: d
+\end{solution}
+
+\section{Problem 1.2.5}
+
+Determine the possible echelon forms of a nonzero 2x2 matrix using Example 1 notation.
+
+\begin{solution}
+ 
+ \[REF:\left(\begin{matrix}{}
+  \blacksquare 	& * 				\\
+  0				& \blacksquare 	\\
+\end{matrix}\right),
+%
+\]
+ 
+ \[RREF:\left(\begin{matrix}{}
+  \blacksquare 	& 0 				\\
+  0				& \blacksquare 	\\
+\end{matrix}\right),
+%
+\left(\begin{matrix}{}
+  \blacksquare 	& * 				\\
+  0				& 0 				\\
+\end{matrix}\right),
+%
+\left(\begin{matrix}{}
+  0				& \blacksquare 	\\
+  0				& 0 				\\
+\end{matrix}\right)\]
+ 
+\end{solution}
+
+\section{Problem 1.2.7}
+
+Find general solutions for matrix:
+
+\[M=\left(\begin{matrix}{}
+  1&3 &4 &7  \\
+  3&9 &7 &6  \\
+\end{matrix}\right)\]
+
+\begin{solution}
+
+\[
+\left(\begin{matrix}{}
+  1&3 &4 &7  \\
+  3&9 &7 &6  \\
+\end{matrix}\right)
+%
+\xRightarrow{R_2=R_2-3R_1}
+%
+\left(\begin{matrix}{}
+  1&3 &4 &7  \\
+  0&0 &-5 &-15  \\
+\end{matrix}\right)
+%
+\xRightarrow{R_2=-1/5R_2}
+%
+\left(\begin{matrix}{}
+  1&3 &4 &7  \\
+  0&0 &1 &3  \\
+\end{matrix}\right)
+\]
+
+
+\[
+Sol_M=
+\systeme*{x_1=-3 x_2 - 5, x_2=$free variable$, x_3 = 3}
+\]
+
+
+\end{solution}
+
+\section{Problem 1.2.11}
+Find general solutions for matrix:
+
+\[M=\left(\begin{matrix}{}
+   3 &-4 &2&0  \\
+  -9 &12 &-6&0  \\
+  -6 & 8 &-4&0
+\end{matrix}\right)\]
+
+\begin{solution}
+
+\[
+\left(\begin{matrix}{}
+   3 &-4 &2&0  \\
+  -9 &12 &-6&0  \\
+  -6 & 8 &-4&0
+\end{matrix}\right)
+%
+\xRightarrow[R_3=R_3+2R_1]{R_2=R_2+3R_1}
+%
+\left(\begin{matrix}{}
+   3 &-4 &2&0  \\
+   0 & 0 & 0&0  \\
+   0 & 0 & 0&0
+\end{matrix}\right)
+%
+\xRightarrow{R_1=1/3R_1}
+%
+\left(\begin{matrix}{}
+   1 &-4/3 &2/3&0  \\
+   0 & 0 & 0&0  \\
+   0 & 0 & 0&0
+\end{matrix}\right)
+\]
+
+\[
+Sol_M=
+\systeme*{x_1= \frac{4}{3}x_2-\frac{2}{3}x_3, x_2=$free variable$, x_3 = $free variable$}
+\]
+
+
+\end{solution}
+
+\section{Problem 1.2.15}
+
+Determine if systems are consistent and if so, are unique.
+
+\begin{solution}
+
+\begin{enumerate}[label=\alph*)]
+	\item System is consistent and unique.
+	\item System is inconsistent.
+\end{enumerate}
+\end{solution}
+
+\section{Problem 1.2.23}
+
+Is a 3x5 coefficient matrix with 3 pivots consistent?
+
+\begin{solution}
+
+Yes, the augmented matrix will have pivots in all 3 rows \textit{before} the final column. It will just have 2 free variables, but that doesn't affect consistency.
+\end{solution}
+
+\newpage
+\section{Problem 1.2.26}
+
+Explain why a system of three equations with a corresponding coefficient matrix with three pivots is unique.
+
+\begin{solution}
+If there are three pivots in the coefficient matrix, that means all three variables have a solution. If three variables in a system of three equations all have solutions, then there are no free variables, implying that is the unique solution.
+\end{solution}
+
+\section{Problem 1.2.30}
+
+Give an example of an inconsistent underdetermined system of two equations in three unknowns.
+
+\begin{solution}
+
+\[
+\systeme*{x_1+x_2+x_3=3, x_1+x_2+x_3=4}
+\]
+
+\end{solution}
+
+
+
+
+\end{document}
