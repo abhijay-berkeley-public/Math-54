@@ -1,0 +1,439 @@
+\documentclass[11pt, notitlepage]{report}
+
+	\usepackage[margin=1in]{geometry}
+	\usepackage{amsmath,amsthm,amssymb,amsfonts}
+	\usepackage{enumitem}
+	
+	\newcommand{\N}{\mathbb{N}}
+	\newcommand{\Z}{\mathbb{Z}}
+	\newcommand{\R}{\mathbb{R}}
+	\newcommand{\A}{\alpha}
+	\newcommand{\ora}[1]{\overrightarrow{#1}}
+	\usepackage[parfill]{parskip}
+	\usepackage{mathtools}
+	\newenvironment{solution}{\paragraph{\small Solution:}}{\hfill}
+	\newenvironment{theorem}{\paragraph{Theorem:}}{\hfill}
+	\newenvironment{definition}{\paragraph{Definition:}}{\hfill}
+	\newenvironment{problem}[2][Problem]{\begin{trivlist}
+	\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+	\usepackage{pgfplots}
+	\usetikzlibrary{arrows}
+	\usetikzlibrary{decorations.markings}
+	\usetikzlibrary{datavisualization}
+	\usetikzlibrary{datavisualization.formats.functions}
+	%\usepackage{pstricks-add}
+
+	\pgfplotsset{every axis/.append style={
+	                   axis x line=middle,    % put the x axis in the middle
+	                   axis y line=middle,    % put the y axis in the middle
+	                   axis line style={<->,color=gray}, % arrows on the axis
+	                   xlabel={$x$},          % default put x on x-axis
+	                   ylabel={$y$},          % default put y on y-axis
+	           }}
+	\pgfplotsset{compat=1.15}
+	
+	\newcommand{\pgraph}[4]{
+		\begin{center}
+		
+		\begin{tikzpicture}
+		\begin{axis}[
+		   trig format plots=rad,
+		   axis equal,
+		   grid=both
+		]
+		\addplot [domain=#3:#4, variable=\t, samples=50, black, decoration={
+		   markings,
+		   mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+		   }, postaction=decorate]
+		({#1}, {#2});
+		
+		\end{axis}
+		\end{tikzpicture}
+		
+		\end{center}
+	}
+
+
+   \newcommand{\cgraph}[3]{
+	   \begin{center}
+	
+	   \begin{tikzpicture}
+	   \begin{axis}[
+	       trig format plots=rad,
+	       axis equal,
+	       grid=both
+	   ]
+	   \addplot [domain=#2:#3, variable=\x, samples=50, black, decoration={
+	       markings,
+	       mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+	       }, postaction=decorate]
+	   {#1};
+	
+	   \end{axis}
+	   \end{tikzpicture}
+	
+	   \end{center}
+	}
+
+
+	
+	\makeatletter
+	\newcommand*{\toccontents}{\@starttoc{toc}}
+	\makeatother
+
+
+\begin{document}
+   \title{Math 54: Homework 3}
+   \author{Abhijay Bhatnagar}
+   \maketitle
+   \toccontents
+
+
+
+\setcounter{secnumdepth}{0} %% no numbering
+\section{Assignment}
+
+1.5: 1, 5, 9, 23, 24, 25, 38, 39. \\
+1.7: 1, 7, 9, 11, 21, 22, 31, 32, 33, 34, 37, 38.
+
+\newpage
+\section {Section 1.5}
+\subsection{Problem 1}
+Determine if the system has a nontrivial solution:
+
+\begin{align*}
+	2x_1-5x_2+8x_3 &= 0 \\
+	2x_1-7x_2+\phantom{8}x_3 &= 0  \\
+	4x_1+2x_2+7x_3 &= 0
+\end{align*} 
+
+\begin{solution}
+
+\[
+\left(\begin{matrix}{}
+  2&-5 &8 \\
+  2&-7 &1 \\
+  4&2 &7
+\end{matrix}\right)
+%
+\xRightarrow{}
+%
+\left(\begin{matrix}{}
+  2&-5 &8 \\
+  0&-2 &7 \\
+  0&-8 &-9
+\end{matrix}\right)
+%
+\xRightarrow{}
+%
+\left(\begin{matrix}{}
+  2&-5 &8 \\
+  0&-2 &7 \\
+  0&0 &-37
+\end{matrix}\right)
+\]
+
+There are infinitely many solutions.
+
+\end{solution}
+
+\subsection{Problem 5}
+
+Write the solution set of the given homogeneous system in parametric vector form.
+
+\begin{solution}
+
+\[
+\left(\begin{matrix}{}
+  1& 3& 1\\
+  -4&-9 &2 \\
+    &-3 &-6
+\end{matrix}\right)
+%
+\xRightarrow{}
+%
+\left(\begin{matrix}{}
+  1 & 3 & 1\\
+  0 & 3 & 6 \\
+    &-3 &-6
+\end{matrix}\right)
+%
+\xRightarrow{}
+%
+\left(\begin{matrix}{}
+  1 & 3 & 1\\
+  0 & 1 & 2 \\
+  0 &0 &0
+\end{matrix}\right)
+%
+\xRightarrow{}
+%
+\left(\begin{matrix}{}
+  1 & 0 & -5\\
+  0 & 1 & 2 \\
+  0 &0 &0
+\end{matrix}\right)
+\]
+
+\begin{align*}
+x_1 &= -5x_3 \\
+x_2 &= -2x_3
+\end{align*}
+
+\[
+\textbf{x}= \left(\begin{matrix}{}
+  x_1\\
+  x_2\\
+  x_3
+\end{matrix}\right)
+= \left(\begin{matrix}{}
+  -5x_3\\
+  -2x_3\\
+  x_3
+\end{matrix}\right)
+= x_3
+\left(\begin{matrix}{}
+  -5 \\
+  -2 \\
+  \phantom{-}1
+\end{matrix}\right) (\text{with $x_3$ free})
+\]
+
+
+\end{solution}
+
+\newpage
+\subsection{Problem 9}
+Describe parametric solution set.
+
+\begin{solution}
+
+\[\left(\begin{matrix}{}
+  3& -9&6 \\
+  -1&3 &-2 \\
+\end{matrix}\right)=
+\left(\begin{matrix}{}
+  1& -3&2 \\
+  0&0 &0 \\
+\end{matrix}\right)
+\]
+
+\[
+\textbf{x}= \left(\begin{matrix}{}
+  x_1\\
+  x_2\\
+  x_3
+\end{matrix}\right)
+= \left(\begin{matrix}{}
+  3x_2-2x_3\\
+  x_2\\
+  x_3
+\end{matrix}\right)
+= x_2
+\left(\begin{matrix}{}
+  3 \\
+  1 \\
+  0
+\end{matrix}\right)+
+x_3
+\left(\begin{matrix}{}
+  -2 \\
+  0 \\
+  1
+\end{matrix}\right) (\text{with $x_2,x_3$ free})
+\]
+
+\end{solution}
+
+\subsection{Problem 23}
+True or False.
+
+\begin{solution}
+\begin{enumerate}[label=\alph*.)]
+	\item True, homogenous solutions always at least have the trivial solution.
+	\item False, it provides an implicit description of solution set.
+	\item False, it always has the trivial solution.
+	\item False, it is a line through p parallel to v.
+	\item True.
+\end{enumerate}
+\end{solution}
+
+\subsection{Problem 24}
+
+True or False.
+
+\begin{solution}
+
+\begin{enumerate}[label=\alph*.)]
+	\item False, at least one entry is nonzero
+	\item True.
+	\item True.
+	\item False, being parallel to a point doesn't have any meaning. It is move parallel to the line through p and the origin. 
+	\item True.
+\end{enumerate}
+
+\end{solution}
+
+\subsection{Problem 25??}
+
+Let w be any solution of Ax=b.
+
+Show $v_h=$ w$-$p is a solution of Ax=0.
+
+\begin{solution}
+
+\begin{align*}
+A\cdot \textbf{w} &= \textbf{b} \\
+A\cdot \begin{bmatrix}
+	x_1 \\
+	... \\
+	x_n
+\end{bmatrix} &= \textbf{p} + x_1 \begin{bmatrix}
+	a_1 \\
+	... \\
+	a_n
+\end{bmatrix}
+\end{align*}
+
+\begin{align*}
+A\cdot \textbf{x} &= \textbf{0} \\
+				  &= \sum_{i}{x_i\textbf{v}_i} \\
+\end{align*}
+
+\end{solution}
+
+\subsection{Problem 38}
+\begin{solution}
+
+Yes, there exists a \textbf{z} $\in \R^3$, because for all $Ax$, \textbf{z}$=\vec{0}$ will always allow for a solution.
+
+\end{solution}
+
+\subsection{Problem 39}
+\begin{solution}
+
+\begin{align*}
+Ax&=0\\
+Au&=\sum_{i}^{n}{u_i\textbf{v}_i}=0 \\\\
+A(cu)&=c\sum_{i}^{n}{u_i\textbf{v}_i}\\
+&=c\cdot0\\
+&=0
+\end{align*}
+
+
+\end{solution}
+
+\section{Section 1.7}
+\subsection{Problem 1}
+Determine linear depedence
+\begin{solution}
+Linearly independent. It can be reduced to REF with no free variables.
+\end{solution}
+
+\subsection{Problem 7}
+Determine if columns are linearly independent.
+\begin{solution}
+Linearly dependent. There are 4 columns and 3 entries. By Theorem 8, this is a linearly dependent set.
+\end{solution}
+\subsection{Problem 9??}
+\begin{solution}
+\begin{enumerate}[label=\alph*.)]
+	\item v1 and v2 are multiples... so all?
+	\item v1 and v2 are multiples... so all?
+\end{enumerate}
+\end{solution}
+\subsection{Problem 11}
+
+\begin{solution}
+
+\[
+\left(\begin{matrix}{}
+  1&-1 &4 \\
+  3&-5 &7 \\
+  -1&5 &h
+\end{matrix}\right)
+\xRightarrow{}
+\left(\begin{matrix}{}
+  1&-1 &4 \\
+  0&-2 &-5 \\
+  0&4 &h+4
+\end{matrix}\right)
+\xRightarrow{}
+\left(\begin{matrix}{}
+  1&-1 &4 \\
+  0&-2 &-5 \\
+  0&0 &h-6
+\end{matrix}\right)
+\]
+
+Linearly dependent when $h=6$.
+\end{solution}
+
+\subsection{Problem 21}
+True or False.
+\begin{solution}
+\begin{enumerate}[label=\alph*.)]
+	\item False, it's linearly independent when it \textit{only} has the trivial solution.
+	\item False, at least one vector is a linear combination of the others.
+	\item True.
+	\item True.
+\end{enumerate}
+\end{solution}
+
+\subsection{Problem 22?}
+True or False.
+\begin{solution}
+\begin{enumerate}[label=\alph*.)]
+	\item True.
+	\item False, each vector could be the zero vector.
+	\item True.
+	\item True (99\% sure).
+\end{enumerate}
+\end{solution}
+
+\subsection{Problem 31}
+Find nontrivial solution of Ax=0.
+\begin{solution}
+\[
+x=\begin{bmatrix}
+1\\
+1\\
+-1	
+\end{bmatrix}
+\]
+\end{solution}
+
+\subsection{Problem 32}
+Find nontrivial solution of Ax=0.
+\begin{solution}
+\[
+x=\begin{bmatrix}
+1\\
+2\\
+-1	
+\end{bmatrix}
+\]
+\end{solution}
+
+\subsection{Problem 33}
+\begin{solution}
+True, at least one vector ($v_3$) is a linear combination of the other vectors.
+\end{solution}
+
+\subsection{Problem 34}
+\begin{solution}
+True, any set with the zero vector is linearly dependent.
+\end{solution}
+
+\subsection{Problem 37}
+\begin{solution}
+True, the linear combinations that would lead $\{v_1,v_2,v_3\}$ to be dependent would also hold for $\{v_1,v_2,v_3,v_4\}$ if you scale $v_4$ by $0$.
+\end{solution}
+
+\subsection{Problem 38}
+\begin{solution}
+True. Any linear combinations that would result in $\{v_1,v_2,v_3\}$ being dependent would also hold for $\{v_1,v_2,v_3,v_4\}$ if you scale $v_4$ by $0$.
+\end{solution}
+
+\end{document}
