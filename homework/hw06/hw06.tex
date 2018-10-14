@@ -1,0 +1,177 @@
+\documentclass[11pt, notitlepage]{report}
+
+	\usepackage[margin=1in]{geometry}
+	\usepackage{amsmath,amsthm,amssymb,amsfonts}
+	\usepackage{enumitem}
+	\usepackage{systeme}
+
+	\newcommand{\N}{\mathbb{N}}
+	\newcommand{\Z}{\mathbb{Z}}
+	\newcommand{\R}{\mathbb{R}}
+	\newcommand{\A}{\alpha}
+	\newcommand{\ora}[1]{\overrightarrow{#1}}
+	\newcommand{\Question}[1]{\newpage\section{#1}}
+	\usepackage[parfill]{parskip}
+	\usepackage{mathtools}
+	\newenvironment{solution}{\paragraph{Solution:}}{\hfill}
+	\newenvironment{theorem}{\paragraph{Theorem:}}{\hfill}
+	\newenvironment{subtheorem}[1]{\paragraph{\small Subtheorem #1:}}{\hfill}
+	\newenvironment{definition}{\paragraph{Definition:}}{\hfill}
+	\newenvironment{problem}[2][Problem]{\begin{trivlist}
+	\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+	
+	\usepackage{pgfplots}
+	\usetikzlibrary{arrows}
+	\usetikzlibrary{decorations.markings}
+	\usetikzlibrary{datavisualization}
+	\usetikzlibrary{datavisualization.formats.functions}
+	%\usepackage{pstricks-add}
+
+	\pgfplotsset{every axis/.append style={
+	                   axis x line=middle,    % put the x axis in the middle
+	                   axis y line=middle,    % put the y axis in the middle
+	                   axis line style={<->,color=gray}, % arrows on the axis
+	                   xlabel={$x$},          % default put x on x-axis
+	                   ylabel={$y$},          % default put y on y-axis
+	           }}
+	\pgfplotsset{compat=1.15}
+	
+	\newcommand{\pgraph}[4]{
+		\begin{center}
+		
+		\begin{tikzpicture}
+		\begin{axis}[
+		   trig format plots=rad,
+		   axis equal,
+		   grid=both
+		]
+		\addplot [domain=#3:#4, variable=\t, samples=50, black, decoration={
+		   markings,
+		   mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+		   }, postaction=decorate]
+		({#1}, {#2});
+		
+		\end{axis}
+		\end{tikzpicture}
+		
+		\end{center}
+	}
+
+
+   \newcommand{\cgraph}[3]{
+	   \begin{center}
+	
+	   \begin{tikzpicture}
+	   \begin{axis}[
+	       trig format plots=rad,
+	       axis equal,
+	       grid=both
+	   ]
+	   \addplot [domain=#2:#3, variable=\x, samples=50, black, decoration={
+	       markings,
+	       mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+	       }, postaction=decorate]
+	   {#1};
+	
+	   \end{axis}
+	   \end{tikzpicture}
+	
+	   \end{center}
+	}
+
+
+	
+	\makeatletter
+	\newcommand*{\toccontents}{\@starttoc{toc}}
+	\makeatother
+
+
+\begin{document}
+   \title{Math 54: HW \#6}
+   \author{Abhijay Bhatnagar}
+   \maketitle
+   \toccontents
+
+
+%\begin{enumerate}[label=\alph*.)]
+%\end{enumerate}
+\setcounter{secnumdepth}{0} %% no numbering
+\section{4.1}
+\subsection{1}
+\begin{solution}
+\begin{enumerate}[label=\alph*.)]
+\item Yes. The sum of non negative numbers can never be nonnegative.
+\item $u=[1,1]$ and $c=-1$. 
+\end{enumerate}
+\end{solution}
+\subsection{2}
+\begin{solution}
+\begin{enumerate}[label=\alph*.)]
+\item Yes. $c$ will change the sign of both $x,y$.
+\item $u=[1,0]$ and $v=[0,-1]$
+\end{enumerate}
+\end{solution}
+\subsection{5}
+\begin{solution}
+Yes. Subspace of $P_2$, addition and multiplication hold.
+\end{solution}
+\subsection{6}
+\begin{solution}
+   No, not a subspace. Multiplying by scalar makes it not longer in the form of $a+t^2$.
+\end{solution}
+\subsection{8}
+\begin{solution}
+   The set trivially contains the zero vector.
+   Let some function $p_1(t),p_2(t)$ be in the set. $(p_1+p_2)(0) = 0+0=0$, set is closed under addition. For any scalar $c, (cp)(t) = cp(t)$, so the set is closed under multiplication.
+\end{solution}
+\subsection{11}
+\begin{solution}
+   $u = [5 1 0]$ and $v = [2 0 1]$. It shows that W is a subspace of $\R^3$ because they are linearly independent.
+\end{solution}
+\subsection{20}
+\begin{solution}
+\begin{enumerate}[label=\alph*.)]
+   \item Prove the continuous functions have zero vector and are closed under addition and subtraction.
+   \item First, showing it contains zero vector. We can just define a $C[0,0]:f(0)=f(0)$, which holds. Next, showing it's closed under addition: $\forall f,g\in \text{ the set }, (f+g)(a)=f(a)+g(a)=f(b)+g(b)=(f+g)(a)$. Finally, showing it's closed under scalar multiplication, which is trivial by observation.
+\end{enumerate}
+\end{solution}
+\subsection{21}
+\begin{solution}
+   True. Addition holds because (2,1) will always be $0+0$. Zero holds because a=b=d=0 is a valid case. Scalar holds as $c*0=0$.
+\end{solution}
+\subsection{22}
+\begin{solution}
+   Yes.
+
+   zero condition: Let $A=0$ matrix, $FA=0\implies \ora{0} \in H$
+
+   addition closure: $F(A_1 + A_2)=FA_1 + FA_2 = 0 + 0 = 0$, which is in $H$, so it is closed.
+
+   scalar closure: $c*0=0$, so it is closed.
+\end{solution}
+\subsection{23}
+\begin{solution}
+\begin{enumerate}[label=\alph*.)]
+   \item False. Most functions have some $t:f(t)=0$.
+   \item False. Vectors exist outside of 3D space.
+   \item False. You also need to show it is closed under addition/scaling.
+   \item True. Definitional.
+   \item False. Not mentioned in introduction to chapter.
+\end{enumerate}
+\end{solution}
+\subsection{31}
+\begin{solution}
+   $H$ has to contain $span{u,v}$ because vector spaces are closed under linear combinations, which is what the definition of span is.
+\end{solution}
+\subsection{32}
+\begin{solution}
+   zero condition: 0 was in H and K by definition of subspaces, so it is in the intersection as well.
+     
+      addition closure: any two vectors that were in both planes must've also been closed under both original subspaces, so their additions are in the intersections.
+
+      scalar closure: similar argument to addition.
+\end{solution}
+
+
+\end{document}
+

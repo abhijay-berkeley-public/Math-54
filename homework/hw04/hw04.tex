@@ -1,0 +1,463 @@
+\documentclass[11pt, notitlepage]{article}
+
+	\usepackage[margin=1in]{geometry}
+	\usepackage{amsmath,amsthm,amssymb,amsfonts}
+	\usepackage{enumitem}
+	\usepackage{systeme}
+
+	\newcommand{\N}{\mathbb{N}}
+	\newcommand{\Z}{\mathbb{Z}}
+	\newcommand{\R}{\mathbb{R}}
+	\newcommand{\A}{\alpha}
+	\newcommand{\ora}[1]{\overrightarrow{#1}}
+	\newcommand{\Question}[1]{\newpage\section{#1}}
+	\usepackage[parfill]{parskip}
+	\usepackage{mathtools}
+	\newenvironment{amatrix}[1]{%
+	  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+	}{%
+	  \end{array}\right)
+	}
+	\newenvironment{solution}{\paragraph{Solution:}}{\hfill}
+	\newenvironment{theorem}{\paragraph{Theorem:}}{\hfill}
+	\newenvironment{subtheorem}[1]{\paragraph{\small Subtheorem #1:}}{\hfill}
+	\newenvironment{definition}{\paragraph{Definition:}}{\hfill}
+	\newenvironment{problem}[2][Problem]{\begin{trivlist}
+	\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+	
+	\usepackage{pgfplots}
+	\usetikzlibrary{arrows}
+	\usetikzlibrary{decorations.markings}
+	\usetikzlibrary{datavisualization}
+	\usetikzlibrary{datavisualization.formats.functions}
+	%\usepackage{pstricks-add}
+
+	\pgfplotsset{every axis/.append style={
+	                   axis x line=middle,    % put the x axis in the middle
+	                   axis y line=middle,    % put the y axis in the middle
+	                   axis line style={<->,color=gray}, % arrows on the axis
+	                   xlabel={$x$},          % default put x on x-axis
+	                   ylabel={$y$},          % default put y on y-axis
+	           }}
+	\pgfplotsset{compat=1.15}
+	
+	\newcommand{\pgraph}[4]{
+		\begin{center}
+		
+		\begin{tikzpicture}
+		\begin{axis}[
+		   trig format plots=rad,
+		   axis equal,
+		   grid=both
+		]
+		\addplot [domain=#3:#4, variable=\t, samples=50, black, decoration={
+		   markings,
+		   mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+		   }, postaction=decorate]
+		({#1}, {#2});
+		
+		\end{axis}
+		\end{tikzpicture}
+		
+		\end{center}
+	}
+
+
+   \newcommand{\cgraph}[3]{
+	   \begin{center}
+	
+	   \begin{tikzpicture}
+	   \begin{axis}[
+	       trig format plots=rad,
+	       axis equal,
+	       grid=both
+	   ]
+	   \addplot [domain=#2:#3, variable=\x, samples=50, black, decoration={
+	       markings,
+	       mark=between positions 0.2 and 1 step 4em with {\arrow [scale=1.5]{stealth}}
+	       }, postaction=decorate]
+	   {#1};
+	
+	   \end{axis}
+	   \end{tikzpicture}
+	
+	   \end{center}
+	}
+
+
+	
+	\makeatletter
+	\newcommand*{\toccontents}{\@starttoc{toc}}
+	\makeatother
+
+
+\begin{document}
+   \title{Math 54: Homework 4}
+   \author{Abhijay Bhatnagar}
+   \maketitle
+   \toccontents
+
+
+
+\setcounter{secnumdepth}{0} %% no numbering
+
+\newpage
+\section{1.8}
+\subsection{Problem 1}
+\begin{solution}
+	\[
+	T(u)=\begin{bmatrix}
+		2\\
+		-6 \\
+	\end{bmatrix},
+	T(v)=\begin{bmatrix}
+		2a\\
+		2b \\
+	\end{bmatrix}
+	\]
+\end{solution}
+\subsection{Problem 4}
+Find $x$ s.t. $Ax=b$ is true, and determine uniqueness.
+\begin{solution}
+	\begin{align*}
+		x_1-3x_2+2x_3&=6\\
+		x_2-4x_3&=-7\\
+		3x_1-5x_2-9x_3&=-9\\
+	\end{align*}
+	\[\begin{bmatrix}{}
+	  1&-3 &2 &6 \\
+	  0&1 &-4 &-7\\
+	  3&-5 &-9&-9
+	\end{bmatrix}=\begin{bmatrix}{}
+	  1&0 &0 &-5 \\
+	  0&1 &0 &-3\\
+	  0&0 &1&1
+	\end{bmatrix}\implies x= \begin{bmatrix}{}
+	  -5 \\
+	  -3\\
+	  1
+	\end{bmatrix}
+	\]
+	The solution is unique because there are no free variables.
+\end{solution}
+\subsection{Problem 8}
+5 rows, 4 columns.
+
+\subsection{Problem 12}
+\begin{solution}
+$\begin{aligned}[t]
+&\begin{amatrix}{4}1&3&9&2&-1\\1&0&3&-4&3\\0&1&2&3&-1\\-2&3&0&5&4\\\end{amatrix}
+\begin{array}{c}\\R_2-R_1\\\\R_4+2R_1\\\end{array}&
+\sim
+&\begin{amatrix}{4}1&3&9&2&-1\\0&-3&-6&-6&4\\0&1&2&3&-1\\0&9&18&9&2\\\end{amatrix}
+\begin{array}{c}\\\frac{-1}{3}R_2\\[0.25em]\\\\\end{array}
+\sim
+\\&\begin{amatrix}{4}1&3&9&2&-1\\0&1&2&2&-4/3\\0&1&2&3&-1\\0&9&18&9&2\\\end{amatrix}
+\begin{array}{c}R_1-3R_2\\\\R_3-R_2\\R_4-9R_2\\\end{array}&
+\sim
+&\begin{amatrix}{4}1&0&3&-4&3\\0&1&2&2&-4/3\\0&0&0&1&1/3\\0&0&0&-9&14\\\end{amatrix}
+\begin{array}{c}R_1+4R_3\\R_2-2R_3\\\\R_4+9R_3\\\end{array}
+\sim
+\\&\begin{amatrix}{4}1&0&3&0&13/3\\0&1&2&0&-2\\0&0&0&1&1/3\\0&0&0&0&17\\\end{amatrix}
+\begin{array}{c}\\\\\\\frac{1}{17}R_4\\[0.25em]\end{array}&
+\sim
+&\begin{amatrix}{4}1&0&3&0&13/3\\0&1&2&0&-2\\0&0&0&1&1/3\\0&0&0&0&1\\\end{amatrix}
+\begin{array}{c}R_1-13/3R_4\\[0.25em]R_2+2R_4\\R_3-1/3R_4\\[0.25em]\\\end{array}
+\sim
+\\&\begin{amatrix}{4}1&0&3&0&0\\0&1&2&0&0\\0&0&0&1&0\\0&0&0&0&1\\\end{amatrix}
+\end{aligned}$
+
+No, because $Ax=b$ is inconsistent.
+\end{solution}
+\subsection{Problem 14}
+\begin{solution}
+	Graphs in tex are hard. It's a scaling matrix by 1/2 in both directions.
+\end{solution}
+\subsection{Problem 16}
+\begin{solution}
+	Graphs are hard. It flips over $y=x$.
+\end{solution}
+\subsection{Problem 17}
+\begin{solution}
+	\begin{align*}
+		T(3u)&=(6, 3) \\
+		T(2v)&=(-2, 6) \\
+		T(3u+2v)&=(4,9)
+	\end{align*}
+\end{solution}
+\subsection{Problem 22}
+True or false
+\begin{solution}
+	\begin{enumerate}[label=\alph*.)]
+		\item True, it's has certain properties.
+		\item False, $\R^5$
+		\item False, there's nothing unique about c.
+		\item True, definitional.
+		\item True, it is scalar multiplication and addition.
+	\end{enumerate}
+\end{solution}
+\subsection{Problem 24}
+\begin{solution}
+	$x$ is any vector in $\R^n$. Since $v_1,...,v_n$ span $\R^n$, we can rewrite x as some linear combination of those vectors. By the principle of superposition, $T(x)=c_1T(v_1)+...+c_nT(v_n)=0$
+\end{solution}
+\subsection{Problem 31}
+\begin{solution}
+	If the vectors are linearly dependent, you can rewrite one of the vectors as a linear combination of the others. Similarly, you can rewrite one of the transformations of the vectors with the same set of linear operations.
+\end{solution}
+\subsection{Problem 32}
+\begin{solution}
+	Let $u=(1,-1), v=(2,1), T(u)=(6,3), T(v)=(6,3), T(u+v)=T(3,0)=(12,0) \neq (12,6)=T(u)+T(v)$
+\end{solution}
+
+\newpage
+\section{1.9} 
+\subsection{Problem 4}
+Clockwise rotation ($-\pi/4$ radians), aka counterclockwise rotation of $\pi/4$.
+\begin{solution}
+	\[T=\begin{bmatrix}
+		cos(\pi/4)&-sin(\pi/4)&\\
+		sin(\pi/4)& cos(\pi/4)
+	\end{bmatrix}
+	\]
+\end{solution}
+\subsection{Problem 6}
+\begin{solution}
+	\[T=\begin{bmatrix}
+	1&3\\
+	0&1
+	\end{bmatrix}
+	\]
+\end{solution}
+\subsection{Problem 9}
+\begin{solution}
+	\[T_{shear}=\begin{bmatrix}
+	1&-2\\
+	0&1
+	\end{bmatrix}
+	\]
+	\[T=\begin{bmatrix}
+	0&-1\\
+	-1&0
+	\end{bmatrix}
+	\cdot \begin{bmatrix}
+	1&-2\\
+	0&1
+	\end{bmatrix}=\begin{bmatrix}
+	0&-1\\
+	-1&2
+	\end{bmatrix}
+	\]
+\end{solution}
+\subsection{Problem 23abcd}
+	\begin{enumerate}[label=\alph*.)]
+		\item True, Superposition principle.
+		\item True, rotation matrix is linear.
+		\item False, compositions preserve linearity.
+		\item False, onto has to do with the entire codomain having a preimage.
+		\item False, T is one to one if the columns are linearly independent, a 3x2 matrix can satisfy that.  
+	\end{enumerate}
+\subsection{Problem 33}
+\begin{solution}
+\begin{align*}
+	A &= [T(e_1) ... T(e_n)]. \\
+	\text{If }T(x)&=Bx,\\
+	T(e_i)&=b_i, \\
+	\implies A&=[b_1,...,b_n]=B.
+\end{align*}
+\end{solution}
+\subsection{Problem 36}
+\begin{solution}
+	\begin{align*}
+		T(S(cu+dv))=T(cS(u)+dS(v))=cT(S(u))+dT(S(v)), \\
+		\text{which is a linear transformation.}
+	\end{align*}
+\end{solution}
+\subsection{Problem 29}
+\begin{solution}
+\[\begin{bmatrix}{}
+  1&0 &0 \\
+  0&1 &0 \\
+  0&0 &1 \\
+  0&0 &0
+\end{bmatrix}\]
+\end{solution}
+\subsection{Problem 30}
+\begin{solution}
+\[\begin{bmatrix}{}
+  1&0 &0&0 \\
+  0&1 &0&0 \\
+  0&0 &1&0 \\
+\end{bmatrix}\]
+\end{solution}
+
+\newpage
+\section{2.1} 
+\subsection{Problem 1}
+\begin{solution}
+	\begin{enumerate}[label=\alph*.)]
+		\item 2A = \[\left(\begin{matrix}{}
+  -4& 0&2 \\
+  -8& 10&-4 \\
+\end{matrix}\right)\]
+		\item B$-$2A =\[\left(\begin{matrix}{}
+  3& -5&3 \\
+  -7& 6&-7 \\
+\end{matrix}\right)\]
+		\item AC doesn't exist.
+		\item CD = \[\left(\begin{matrix}{}
+  1& 13 \\
+  -7& -6 \\
+\end{matrix}\right)\]
+	\end{enumerate}
+\end{solution}
+\subsection{Problem 10}
+\begin{solution}
+\[AB=\left(\begin{matrix}{}
+  1&-7 \\
+  -2&14 \\
+\end{matrix}\right)\]
+\[AC=\left(\begin{matrix}{}
+  1&-7 \\
+  -2&14 \\
+\end{matrix}\right)\]
+\end{solution}
+\subsection{Problem 12}
+\begin{solution}
+\[B=\left(\begin{matrix}{}
+  2&2 \\
+  1&1 \\
+\end{matrix}\right)\]
+\end{solution}
+\newpage
+\subsection{Problem 15}
+\begin{solution}
+	\begin{enumerate}[label=\alph*.)]
+		\item False, $AB=[Ab_1, Ab_2]$.
+		\item False, linear combinations of the columns of A using weights of B.
+		\item True.
+		\item True.
+		\item False, reverse order.
+	\end{enumerate}
+\end{solution}
+\subsection{Problem 18}
+\begin{solution}
+	First two columns of AB are equal.
+\end{solution}
+\subsection{Problem 22}
+\begin{solution}
+	If the columns of B are linearly independent, $\exists c_1,...,c_n : c_1b_1+...+c_nb_n=0 \land \sum{c_1,...,c_n} \neq 0, \implies AB = Ac_1b_1+...+Ac_nb_n=0\implies AB$ is lin. dependent.
+\end{solution}
+\subsection{Problem 23}
+\begin{solution}
+	\begin{align*}
+	CA&=I_x \\
+	Ax&=0 \\
+	CAx&=C\cdot 0=I_x\cdot x=x \\
+	0&=x \\
+	\text{0 is the only solution for x.} 
+	\end{align*}
+	This only works if there aren't more columns then rows because then there would be free variables, implying more than one solution.
+	\end{solution}
+\subsection{Problem 31}
+\begin{solution}
+	\begin{align*}
+		I_mA=[I_mA_1 ... I_mA_n]=[A_1 ... A_n]=A
+	\end{align*}
+\end{solution}
+\newpage
+\subsection{Problem 32} 
+\begin{solution}
+	\begin{align*}
+		AI_n=[AI_{ni} ... AI_{nf}]=[a_1 ... a_n]=A
+	\end{align*}
+\end{solution}
+
+\newpage
+\section{2.2} 
+\subsection{Problem 10}
+\begin{solution}
+	\begin{enumerate}[label=\alph*.)]
+		\item False. Reverse order.
+		\item True.
+		\item True.
+		\item True.
+		\item False, it reduces $I_a$ to $A^{-1}$.
+	\end{enumerate}
+\end{solution}
+\subsection{Problem 16}
+\begin{solution}
+	\[ C=AB\implies C\cdot B^{-1} = A\implies \text{A is a product of invertible matrices} \implies \text{A is invertible} \]
+\end{solution}
+\subsection{Problem 20}
+\begin{solution}
+\begin{enumerate}[label=\alph*.)]
+	\item \[ C=(A-AX)^{-1}\implies C=X^{-1}B \implies XC=B \]
+	\[\implies \text{B is a product of invertible matrices} \implies \text{B is invertible} \]
+	\item \[ XC=B \implies X=BC^{-1} \text{(C is invertible by definition.)}\]
+	     \[ \implies X=B(A-AX) \implies X=BA-BAX \ (I + BA)X=BA \] 
+	     \[ \implies X=(I + BA)^{-1}BA \implies \text{(I+BA is invertible because I+BA=product of invertible matrices.)} \]
+\end{enumerate}
+\end{solution}
+\subsection{Problem 24}
+\begin{solution}
+	Ax=b for all b implies $Ax=e_i for i =1,...,n$, which means A is row equivalent to $I_n$.
+\end{solution}
+\subsection{Problem 30}
+\begin{solution}
+	\[\left(\begin{matrix}{}
+  -7/5&\phantom{-}2 \\
+  \phantom{-}8/5&-1 \\
+\end{matrix}\right)\]
+\end{solution}
+\subsection{Problem 32}
+\begin{solution}
+	Use row reduction on matrix augmented with identity matrix. Latex is hard.
+	\[\text{Inverse}=1/315\left(\begin{matrix}{}
+	10 & 103 & 106 \\
+	-5 & -20 & 10 \\
+	-5 & -83 & -116 \\
+	\end{matrix}\right)\]
+\end{solution}
+
+\newpage
+\section{2.3} 
+\subsection{Problem 2}
+\begin{solution}
+	Not invertible.
+\end{solution}
+\subsection{Problem 5}
+\begin{solution}
+Rows are linearly dependent, therefore inversion algorithm would be inconsistent.
+\end{solution}
+\subsection{Problem 12}
+\begin{solution}
+	\begin{enumerate}[label=\alph*.)]
+		\item True, A is C's inverse.
+		\item True, A can be row reduced to $[e_1 ... e_n]$
+		\item True.
+		\item False, it should be onto.
+		\item True, only since A is in $n$ x $n$.
+	\end{enumerate}
+\end{solution}
+\subsection{Problem 15}
+\begin{solution}
+	No, columns are linearly dependent.
+\end{solution}
+\subsection{Problem 21}
+\begin{solution}
+	No, it must have free variables which implies the columns cannot span Rn.
+\end{solution}
+\subsection{Problem 28}
+\begin{solution}
+	\begin{align*}
+		Bx&=0 \text{Suppose B is not invertible, therefore this will have more than just the trivial solution, suppose x is some nonzero solution}\\
+		ABx&=A(0)=0 \text{Since AB is invertible, therefore ABx=0 must only have trivial solution, but x is a nonzero solution}\\
+	\end{align*}
+	This is a contradiction, therefore B is invertible.
+\end{solution}
+\subsection{Problem 36}
+\begin{solution}
+	If T is \textit{onto}, that implies there is some $T(x)=b$ for all $b$, therefore for each b, $T^{-1}(b)=$some $x$. Yes.
+\end{solution}
+\end{document}
+

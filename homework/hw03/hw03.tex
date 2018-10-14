@@ -134,7 +134,7 @@ Determine if the system has a nontrivial solution:
 \end{matrix}\right)
 \]
 
-There are infinitely many solutions.
+There is a nontrivial solution.
 
 \end{solution}
 
@@ -177,7 +177,7 @@ Write the solution set of the given homogeneous system in parametric vector form
 \]
 
 \begin{align*}
-x_1 &= -5x_3 \\
+x_1 &= \phantom{-}5x_3 \\
 x_2 &= -2x_3
 \end{align*}
 
@@ -188,13 +188,13 @@ x_2 &= -2x_3
   x_3
 \end{matrix}\right)
 = \left(\begin{matrix}{}
-  -5x_3\\
+  5x_3\\
   -2x_3\\
   x_3
 \end{matrix}\right)
 = x_3
 \left(\begin{matrix}{}
-  -5 \\
+  5 \\
   -2 \\
   \phantom{-}1
 \end{matrix}\right) (\text{with $x_3$ free})
@@ -267,15 +267,15 @@ True or False.
 
 \begin{enumerate}[label=\alph*.)]
 	\item False, at least one entry is nonzero
-	\item True.
-	\item True.
-	\item False, being parallel to a point doesn't have any meaning. It is move parallel to the line through p and the origin. 
-	\item True.
+	\item True, definition of plane.
+	\item True, b has to be zero.
+	\item True, p is translation vector. 
+	\item False, only if there is a vector solution to $Ax=b$.
 \end{enumerate}
 
 \end{solution}
 
-\subsection{Problem 25??}
+\subsection{Problem 25}
 
 Let w be any solution of Ax=b.
 
@@ -284,21 +284,12 @@ Show $v_h=$ w$-$p is a solution of Ax=0.
 \begin{solution}
 
 \begin{align*}
-A\cdot \textbf{w} &= \textbf{b} \\
-A\cdot \begin{bmatrix}
-	x_1 \\
-	... \\
-	x_n
-\end{bmatrix} &= \textbf{p} + x_1 \begin{bmatrix}
-	a_1 \\
-	... \\
-	a_n
-\end{bmatrix}
-\end{align*}
-
-\begin{align*}
-A\cdot \textbf{x} &= \textbf{0} \\
-				  &= \sum_{i}{x_i\textbf{v}_i} \\
+A\cdot \textbf{w} 	&= \textbf{b} 	\\
+A\cdot \textbf{p} 	&= \textbf{b} 	\\
+A\cdot \textbf{v}_h &= 0	    			\\
+A\cdot (p+v_h) 		&= Ap + Av_h 	\\
+					&= b + 0 		\\
+					&= b		 		\\
 \end{align*}
 
 \end{solution}
@@ -306,7 +297,7 @@ A\cdot \textbf{x} &= \textbf{0} \\
 \subsection{Problem 38}
 \begin{solution}
 
-Yes, there exists a \textbf{z} $\in \R^3$, because for all $Ax$, \textbf{z}$=\vec{0}$ will always allow for a solution.
+No, an inconsistent solution implies there is a zero row. If $Ax=z$ has a solution, it has a free variable.
 
 \end{solution}
 
@@ -326,7 +317,7 @@ A(cu)&=c\sum_{i}^{n}{u_i\textbf{v}_i}\\
 
 \section{Section 1.7}
 \subsection{Problem 1}
-Determine linear depedence
+Determine linear dependence
 \begin{solution}
 Linearly independent. It can be reduced to REF with no free variables.
 \end{solution}
@@ -336,11 +327,11 @@ Determine if columns are linearly independent.
 \begin{solution}
 Linearly dependent. There are 4 columns and 3 entries. By Theorem 8, this is a linearly dependent set.
 \end{solution}
-\subsection{Problem 9??}
+\subsection{Problem 9}
 \begin{solution}
 \begin{enumerate}[label=\alph*.)]
-	\item v1 and v2 are multiples... so all?
-	\item v1 and v2 are multiples... so all?
+	\item None. span$\{v_1, v_2\}$ is a line that $v_3$ isn't on.
+	\item All $v_1$ and $v_2$ are linearly dependent.
 \end{enumerate}
 \end{solution}
 \subsection{Problem 11}
@@ -376,19 +367,19 @@ True or False.
 \begin{enumerate}[label=\alph*.)]
 	\item False, it's linearly independent when it \textit{only} has the trivial solution.
 	\item False, at least one vector is a linear combination of the others.
-	\item True.
-	\item True.
+	\item True, columns > rows.
+	\item True, definition of dependence.
 \end{enumerate}
 \end{solution}
 
-\subsection{Problem 22?}
+\subsection{Problem 22}
 True or False.
 \begin{solution}
 \begin{enumerate}[label=\alph*.)]
 	\item True.
 	\item False, each vector could be the zero vector.
-	\item True.
-	\item True (99\% sure).
+	\item True, definition of dependence.
+	\item False, not necessarily the reason for dependence.
 \end{enumerate}
 \end{solution}
 
